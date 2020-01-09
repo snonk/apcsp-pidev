@@ -6,18 +6,20 @@ int main (int argc, char *argv[])
 {
   float r, area, circ;
 
+  if (argc == 2 || argc > 3)  
+    {
+       printf("Please enter both an upper and a lower bound only.\n"); 
+        return 0;
+    }
+
+
   char *lower = argv[1];
   int lowernum = atoi(lower);
   char *upper = argv[2];
   int uppernum = atoi(upper);
-/*
-  if (argc < 4 || argc > 5)  
-    { 
-        printf("enter 4 arguments only eg.\"filename arg1 arg2 arg3!!\""); 
-        return 0; 
-    } */
 
-  printf("You have entered %d and %d", lowernum, uppernum);
+
+  printf("You have entered %d and %d\n", lowernum, uppernum);
 
   r= lowernum;
 
