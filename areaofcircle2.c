@@ -14,17 +14,16 @@ int main (int argc, char *argv[])
     {
       fgets(input, 256, stdin);
       if (sscanf(input, "%d", &radius1) == 1) break;
-        printf("Not a valid radius - try again!");
+        printf("Not a valid radius - try again!\n");
     }
     printf("What is the upper radius?\n");
-    while (1)
-    {
+   
       fgets(input, 256, stdin);
-      if (sscanf(input, "%d", &radius2) == 1) break;
-        printf("Not a valid radius - try again!\n");
-      if (radius2<radius1) printf("Please ensure the upper bound is greater than or equal to the lower bound.\n");
-    }
-    
+      while (sscanf(input, "%d", &radius2) == 0 || (radius2<radius1)) {
+        printf("Not a upper bound - make sure it is an integer greater than the lower bound.\n");
+        fgets(input, 256, stdin);
+      }
+        
     for (int i = radius1; i <= radius2; i++) {
       printf("Area of circle with radius %i is %f\n", i, i * i * PI);
     }
@@ -44,15 +43,24 @@ int main (int argc, char *argv[])
   char *upper = argv[2];
   int uppernum = atoi(upper);
 
-
-  printf("You have entered %d and %d\n", lowernum, uppernum);
-
   r= lowernum;
 
-  while (r<=uppernum) {
-    area = PI * r * r;
-    printf("Area of circle with radius %f is %f\n", r, area);
-    r++;
+  if (lowernum == 0 || uppernum == 0){
+    printf("Please enter a positive integer for your radius.\n");
+  }
+
+  else if (lowernum>uppernum){
+    printf("Your lower bound is greater than your upper bound. Please try again.\n");
+  }
+
+  else {
+
+    while (r<=uppernum) {
+      area = PI * r * r;
+      printf("Area of circle with radius %f is %f\n", r, area);
+      r++;
+    }
+
   }
   }
   return (0);
